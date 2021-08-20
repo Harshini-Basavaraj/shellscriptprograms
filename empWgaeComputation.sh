@@ -1,14 +1,21 @@
 Present=1
-Absent=0
+#Absent=0
+Parttime=2
 wageperhr=20
-randomnumber=$((RANDOM%2))
-if [ $Present -eq $randomnumber ]
-then
- echo "employee is Present"
+randomnumber=$((RANDOM%3))
+case $randomnumber in
+  $Present)
+   echo "Employee is present"
    emp=8
-else
- echo "employee is absent"
-  emp=0
-fi
-dailywage=$((wageperhr*emp))
-echo daily wage is $dailywage
+    ;;
+  $Parttime)
+   echo "Employee is Present for Parttime"
+   emp=4
+    ;;
+   *)
+   emp=0
+   echo "Employee is Absent"
+    ;;
+esac
+dailywage=$(($wageperhr*$emp))
+echo "$dailywage"
